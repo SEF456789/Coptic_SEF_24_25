@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coptic Alphabet</title>
+    <style>
+                /* Blur background when modal is open */
+        body.modal-open .main-content {
+            filter: blur(5px);
+            pointer-events: none;
+        }
+
+        /* Congratulations Modal */
+        .congrats-modal {
+            display: none;
+            position: fixed;
+            z-index: 1001;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+        }
+
+        .congrats-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(135deg, #FFD700, #FF6B35);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.4);
+            text-align: center;
+            max-width: 90vw;
+            animation: celebrateAnimation 0.8s ease-out;
+        }
+
+        @keyframes celebrateAnimation {
+            0% {
+                transform: translate(-50%, -50%) scale(0.5) rotate(-10deg);
+                opacity: 0;
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.1) rotate(5deg);
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(1) rotate(0deg);
+                opacity: 1;
+            }
+        }
+
+        .congrats-title {
+            font-size: 3em;
+            margin-bottom: 20px;
+            color: #fff;
+            font-family: 'CS Avva Shenouda', 'ABRAAM', serif;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            animation: bounce 1s infinite alternate;
+        }
+
+        @keyframes bounce {
+            0% { transform: translateY(0px); }
+            100% { transform: translateY(-10px); }
+        }
+
+        .congrats-message {
+            font-size: 1.5em;
+            color: #fff;
+            margin-bottom: 20px;
+            font-family: Arial, sans-serif;
+        }
+
+        .celebration-emojis {
+            font-size: 4em;
+            animation: spin 2s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        @font-face {
+            font-family: 'CS Avva Shenouda';
+            src: url('Avva_Shenouda.ttf') format('truetype'); /* or .woff if available */
+            font-weight: normal;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'ABRAAM';
+            src: url("ABRAAM_0.ttf") format("truetype");
+        }
+        table {
+            border-collapse: collapse;
+            margin: 20px auto;
+            background-color: white;
+            border: 14px solid black;
+            transform: scale(1); /* Increase overall table size by 30% */
+        }
+        td {
+            border: 2px solid #333;
+            width: 100px; /* Increased from 80px */
+            height: 100px; /* Increased from 80px */
+            text-align: center;
+            vertical-align: middle;
+            padding: 0;
+            font-size: 2.5em; /* Increased from 2em */
+            font-weight: bold;
+            color: #333;
+        }
+        
+        td a {
+            display: flex;
+            text-decoration: none;
+            cursor: pointer;
+            width: 100%;
+            height: 100%;
+            align-items: center;
+            justify-content: center;
+            font-family: 'CS Avva Shenouda', 'ABRAAM', serif;
+            color: #951b1b;
+            transition: all 0.3s ease;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            /* 3D text effect */
+            text-shadow: 
+                1px 1px 0px #666666,
+                2px 2px 0px #666666,
+                3px 3px 0px #666666,
+                4px 4px 0px #666666,
+                5px 5px 10px rgba(0,0,0,0.3);
+            transform: perspective(500px) rotateX(15deg);
+        }
+        
+        td a:hover {
+            transform: perspective(500px) rotateX(15deg) scale(1.1) translateZ(10px);
+            background-color: #f0f0f0;
+            color: #2196F3;
+            text-shadow: 
+                1px 1px 0px #1565C0,
+                2px 2px 0px #1565C0,
+                3px 3px 0px #1565C0,
+                4px 4px 0px #1565C0,
+                5px 5px 15px rgba(33,150,243,0.4);
+        }
+        
+        body {
+            font-family: Arial, sans-serif,'CS Avva Shenouda', 'ABRAAM', serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 20px;
+        }
+        
+        /* Modal styles for popup */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            max-width: 90vw;
+            max-height: 90vh;
+        }
+        
+        .modal-image {
+            max-width: 80vw;
+            max-height: 70vh;
+            object-fit: contain;
+            border-radius: 10px;
+        }
+        
+        .modal-title {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #333;
+            font-family: 'CS Avva Shenouda', 'ABRAAM', serif;
+        }
+        
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 2em;
+            font-weight: bold;
+            color: #999;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        
+        .close:hover {
+            color: #333;
+        }
+        
+        /* Blur background when modal is open */
+        body.modal-open .main-content {
+            filter: blur(5px);
+            pointer-events: none;
+        }
+        
+        /* Quiz modal styles */
+        .quiz-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        
+        .quiz-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            max-width: 600px;
+            width: 90%;
+        }
+        
+        .quiz-question {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            color: #333;
+            font-family: 'CS Avva Shenouda', 'ABRAAM', serif;
+            line-height: 1.6;
+            direction: rtl;
+            text-align: center;
+        }
+        
+        .coptic-word {
+            font-size: 1.8em;
+            color: #2196F3;
+            font-weight: bold;
+            margin: 0 5px;
+            font-family: 'CS Avva Shenouda', 'ABRAAM', serif;
+        }
+        
+        .coptic-letter {
+            font-size: 2em;
+            color: #ff6b35;
+            font-weight: bold;
+            margin: 0 5px;
+            font-family: 'CS Avva Shenouda';
+        }
+        
+        /* Style for all Coptic text in questions */
+        .coptic-text {
+            font-family: 'CS Avva Shenouda';
+            font-size: 1.6em;
+            font-weight: bold;
+        }
+        
+        .question-text {
+            display: block;
+            margin: 10px 0;
+        }
+        
+        .quiz-choices {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .choice-button {
+            padding: 15px 20px;
+            font-size: 1.2em;
+            border: 2px solid #333;
+            background: #f9f9f9;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'CS Avva Shenouda', 'ABRAAM', serif;
+        }
+        
+        .choice-button:hover {
+            background: #e0e0e0;
+        }
+        
+        .choice-button.correct {
+            background: #4CAF50;
+            color: white;
+            border-color: #45a049;
+        }
+        
+        .choice-button.wrong {
+            background: #f44336;
+            color: white;
+            border-color: #da190b;
+        }
+        
+        .choice-button.disabled {
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+        
+        .quiz-timer {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #ff6b35;
+            margin-bottom: 20px;
+        }
+        
+        .quiz-close {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 2em;
+            font-weight: bold;
+            color: #999;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        
+        .quiz-close:hover {
+            color: #333;
+        }
+    </style>
+    <script>
+        let currentAudio = null; // Track the currently playing audio
+        let quizTimer = null; // Track the quiz timer
+        let timeLeft = 15; // Timer for quiz
+        
+        // Quiz questions for each letter
+        const quizQuestions = {
+            'Alpha': {
+                question: ' كلمة <span class="coptic-text">Ov2ai</span> تعني عيد و هي كلمة',
+                choices: ['يونانية ', 'قبطية '],
+                correct: 1
+            },
+            'Beta': {
+                question: 'كلمة <span class="coptic-text">Beni</span> نُطق حرف الـ <span class="coptic-text">B</span> ',
+                choices: ['ب', 'ڤ'],
+                correct: 1
+            },
+            'Gamma': {
+                question:'كلمة ملاك تعني <span class="coptic-text">ajjeloc</span> وهي كلمة',
+                choices: ['يونانية ', 'قبطية '],
+                correct: 0
+            },
+            'Dalda': {
+                question: 'في كلمة <span class="coptic-text">david</span> نُطق حرف الـ <span class="coptic-text">d</span> ........ لأنه جاء في علم (إسم شخص)',
+                choices: ['د', 'ذ'],
+                correct: 0
+            },
+            'Ei': {
+                question: 'كلمة الليل تعني.........',
+                choices: ['Ovegwrh', 'piegwrh'],
+                correct: 1
+            },
+            'Zeta': {
+                question: 'كلمة التخمير تعني <span class="coptic-text">\'pzema</span> وهي',
+                choices: ['يونانية', 'قبطية'],
+                correct: 0
+            },
+            'Eta': {
+                question: 'كلمة مصر تعني <span class="coptic-text">X3mi</span> وهي كلمة',
+                //Ⲭⲏⲙⲓ
+                choices: ['يونانية', 'قبطية'],
+                correct: 1
+            },
+            'Theta': {
+                question: 'كلمة القميص تعني',
+                choices: ['52\'03N', 'p\'2\'03N'],
+                //Ϯϣ̀ⲑⲏⲛ - Ⲡ̀ϣ̀ⲑⲏⲛ
+                correct: 0
+            },
+            'Iota': {
+                question: 'كلمة الروائح تعني',
+                choices: ['Pic\'0\'oi', 'Nic\'0\'oi'],
+                // Ⲡⲓⲥ̀ⲑⲟⲓ - Ⲛⲓⲥ̀ⲑ̀ⲟⲓ
+                correct: 1
+            },
+            'Kappa': {
+                question: 'يخلق يعني',
+                choices: ['0maio', 'Nah5'],
+                //( Ⲑⲙⲁⲓⲟ - Ⲛⲁϩϯ )
+                correct: 0
+            },
+            'Laula': {
+                question: 'البركة تعني',
+                choices: ['5keli', 'Ovkeli'],
+                // Ϯⲕⲉⲗⲓ - Ⲟⲩⲕⲉⲗⲓ 
+                correct: 0
+            },
+            'Me': {
+                question: 'كلمة <span class="coptic-text">\'Plaoc</span> تعني الشعب وهي كلمة',
+                choices: ['يونانية ', 'قبطية '],
+                //Ⲡ̀ⲗⲁⲟⲥ 
+                correct: 0
+            },
+            'Ne': {
+                question: 'كلمة <span class="coptic-text">Nim</span> تعني',
+                choices: ['إلى ', 'من '],
+                correct: 1
+            },
+            'Kxi': {
+                question: ' اللوح الحجري يعني',
+                choices: ['5Pla7', 'NiPla7'],
+                //( Ϯⲡ̀ⲗⲁⲝ - Ⲛⲓⲡ̀ⲗⲁⲝ )
+                correct: 0
+            },
+            'O': {
+                question:'كلمة <span class="coptic-text">Ovpla7</span> تعني لوح حجري وهي كلمة',
+                //Ⲟⲩⲡ̀ⲗⲁⲝ
+                choices: ['يونانية ', 'قبطية '],
+                correct: 0
+            },
+            'Pi': {
+                question: 'يلمس يعني <span class="coptic-text">Soh</span> وهو فعل أصله',
+                //Ϭⲟϩ
+                choices: ['يوناني ', 'قبطي '],
+                correct: 1
+            },
+            'Ro': {
+                question:'روح الله يعني <span class="coptic-text">\'M\'fnov5</span> ...... ',
+                //ⲙ̀Ⲫ̀ⲛⲟⲩϯ
+                choices: ['Pip\'nevma', 'Picwt3r'],
+                //( Ⲡⲓⲡ̀ⲛⲉⲩⲙⲁ - Ⲡⲓⲥⲱⲧⲏⲣ )
+                correct: 0
+            },
+            'Semma': {
+                question: 'كلمة البركة تعني',
+                choices: ['5c\'mov', 'Pic\'mov'],
+                //( Ϯⲥ̀ⲙⲟⲩ - Ⲡⲓⲥ̀ⲙⲟⲩ )
+                correct: 0
+            },
+            'Tau': {
+                question: 'كلمة جبل تعني',
+                choices: ['Ovtwov', 'Nitwov'],
+                //( Ⲟⲩⲧⲱⲟⲩ - Ⲛⲓⲧⲱⲟⲩ )
+                correct: 0
+            },
+            'He': {
+                question:'ملك المجد تعني <span class="coptic-text">N\'5e 5hir3n3</span>',
+                //Ⲛ̀ⲧⲉ ϯϩⲓⲣⲏⲛⲏ
+                choices: ['\'Povro', 'Niovro'],
+                //( Ⲡ̀ⲟⲩⲣⲟ - Ⲛⲓⲟⲩⲣⲟ )
+                correct: 0
+            },
+            'Phi': {
+                question: ' والدة الإله تعني <span class="coptic-text">\'M\'fnov5</span>',
+                //ⲙ̀Ⲫ̀ⲛⲟⲩϯ
+                choices: ['\'0mav', 'Nimav'],
+                //( Ⲑ̀ⲙⲁⲩ - Ⲛⲓⲙⲁⲩ )
+                correct: 1
+            },
+            'Khi': {
+                question: 'كلمة مصر تعني <span class="coptic-text">X3mi</span> وفيها نطق حرف الـ Ⲭ',
+                //Ⲭⲏⲙⲓ
+                choices: ['ش', 'ك'],
+                //( ك - ش )
+                correct: 1
+            },
+            'Pxi': {
+                question: 'كلمة المزمور تعني <span class="coptic-text">Pi\'yalmoc</span> وهي كلمة',
+                //Ⲡⲓⲯ̀ⲁⲗⲙⲟⲥ
+                choices: ['يونانية', 'قبطية'],
+                //( قبطية - يونانية )
+                correct: 0
+            },
+            'Hori': {
+                question: 'كلمة ثعابين تعني',
+                choices: ['Piho4', 'hanho4'],
+                //( Ⲡⲓϩⲟϥ - Ϩⲁⲛϩⲟϥ )
+                correct: 1
+            },
+            'Sai': {
+                question: 'كلمة القطط تعني <span class="coptic-text">Ni2av</span> وفيها نطق حرف الـ <span class="coptic-text">v</span> هيبقى ......؟',
+                //Ⲛⲓϣⲁⲩ
+                choices: ['ف', 'ي'],
+                //
+                correct: 0
+            },
+            'Fai': {
+                question: 'كلمة اللحم تعني',
+                choices: ['Pia4', 'Nia4'],
+                //( Ⲡⲓⲁϥ - Ⲛⲓⲁϥ )
+                correct: 0
+            },
+            'Ti': {
+                question: 'إله السماء تعني <span class="coptic-text">fnov5 \'nte\'</span> ......',
+                //Ⲫ̀ⲛⲟⲩϯ Ⲛ̀ⲧⲉ
+                choices: ['Ovfe', '\'tfe'],
+                //( Ⲟⲩⲫⲉ - Ⲧ̀ⲫⲉ )
+                correct: 1
+            },
+            'Sou': {
+                question: 'كلمة <span class="coptic-text">6\'Ⲛ\'ehoov</span> تعني',
+                choices: ['٦ ليالي', ' ٦ أيام'],
+                correct: 1
+            },
+            'Dandia': {
+                question: 'يقول يعني <span class="coptic-text">Gw</span> وفيه نُطق حرف الـ <span class="coptic-text">g</span> هيبقى ......؟',
+                //Ϫⲱ
+                choices: ['چ', 'ج'],
+                correct: 1
+            },
+            'Cima': {
+                question: ' يسوع المسيح تعني <span class="coptic-text">I3coc</span>',
+                choices: ['Pi\'xrictoc', 'picwt3r'],
+                //( Ⲡⲓⲭ̀ⲣⲓⲥⲧⲟⲥ - Ⲡⲓⲥⲱⲧⲏⲣ )
+                correct: 0
+            },
+            'wo': {
+                question:'كلمة المجد تعني',
+                choices: ['\'Pwov', 'Ovwov'],
+                //( Ⲡ̀ⲱⲟⲩ - Ⲟⲩⲱⲟⲩ )
+                correct: 0
+            },
+            'Qai':{
+                question: 'كلمة <span class="coptic-text">qi5</span> تعني إضمحل وهو فعل أصله',
+                //Ϧⲓϯ
+                choices: ['يوناني', 'قبطي'],
+                //( قبطي - يوناني )
+                correct: 1
+            }
+        };
+        
+        function showLetter(letterPath, letterName, audioFile = null, displayLetter = null) {
+            // Check if this letter has a quiz - show quiz instead
+            if (quizQuestions[letterPath]) {
+                showQuiz(letterPath);
+                return;
+            }
+            
+            // Stop any currently playing audio
+            if (currentAudio) {
+                currentAudio.pause();
+                currentAudio.currentTime = 0;
+                currentAudio = null;
+            }
+            
+            // Play audio if provided
+            if (audioFile) {
+                currentAudio = new Audio(audioFile);
+                currentAudio.play().catch(error => {
+                    console.log('Audio playback failed:', error);
+                });
+            }
+            
+            // Show popup modal with the letter
+            showModal(letterPath, letterName, displayLetter);
+            
+            // Log for debugging
+            console.log(`Clicked on: ${letterName}`);
+        }
+        
+        function showQuiz(letterPath) {
+            const quizModal = document.getElementById('quizModal');
+            const timerElement = document.getElementById('quizTimer');
+            const questionElement = document.getElementById('quizQuestion');
+            const choiceA = document.getElementById('choiceA');
+            const choiceB = document.getElementById('choiceB');
+            
+            // Get the quiz data for this letter
+            const quizData = quizQuestions[letterPath];
+            if (!quizData) return;
+            
+            // Set the question and choices
+            questionElement.innerHTML = `<div class="question-text">${quizData.question}</div>`;
+            choiceA.textContent = quizData.choices[0];
+            choiceB.textContent = quizData.choices[1];
+            
+            // Store the correct answer for this quiz
+            window.currentQuizCorrect = quizData.correct;
+            
+            // Reset timer
+            timeLeft = 15;
+            updateTimer();
+            
+            // Show quiz modal
+            quizModal.style.display = 'block';
+            document.body.classList.add('modal-open');
+            
+            // Start countdown timer
+            quizTimer = setInterval(() => {
+                timeLeft--;
+                updateTimer();
+                
+                if (timeLeft <= 0) {
+                    // Time's up - show correct answer
+                    clearInterval(quizTimer);
+                    showCorrectAnswer();
+                }
+            }, 1000);
+        }
+        
+        function updateTimer() {
+            const timerElement = document.getElementById('quizTimer');
+            timerElement.textContent = `الوقت المتبقي: ${timeLeft} ثانية`;
+        }
+        
+
+        function selectChoice(choice) {
+            // Clear timer
+            if (quizTimer) {
+                clearInterval(quizTimer);
+                quizTimer = null;
+            }
+            
+            const choiceA = document.getElementById('choiceA');
+            const choiceB = document.getElementById('choiceB');
+            
+            // Disable all buttons
+            choiceA.classList.add('disabled');
+            choiceB.classList.add('disabled');
+            
+            const selectedIndex = choice === 'A' ? 0 : 1;
+            const correctIndex = window.currentQuizCorrect;
+            
+            if (selectedIndex === correctIndex) {
+                // Correct answer
+                if (choice === 'A') {
+                    choiceA.classList.add('correct');
+                } else {
+                    choiceB.classList.add('correct');
+                }
+                
+                // Play correct answer sound
+                const correctAudio = new Audio('Audios/CORRECT ANSWER SOUND EFFECT _ NO COPYRIGHT(M4A_128K).m4a');
+                correctAudio.play().catch(error => {
+                    console.log('Correct answer audio playback failed:', error);
+                });
+                
+            } else {
+                // Wrong answer - show correct and wrong
+                if (choice === 'A') {
+                    choiceA.classList.add('wrong');
+                    choiceB.classList.add('correct');
+                } else {
+                    choiceB.classList.add('wrong');
+                    choiceA.classList.add('correct');
+                }
+                
+                // Play wrong answer sound
+                const wrongAudio = new Audio('Audios/Wrong Answer Sound effect(M4A_128K).m4a');
+                wrongAudio.play().catch(error => {
+                    console.log('Wrong answer audio playback failed:', error);
+                });
+            }
+            
+            // Auto close after 3 seconds
+            setTimeout(() => {
+                closeQuiz();
+            }, 3000);
+        }
+
+            function showCongratulations() {
+        const modal = document.getElementById('congratsModal');
+        modal.style.display = 'block';
+        document.body.classList.add('modal-open');
+        
+        // Play celebration sound
+        const celebrationAudio = new Audio('Audios/celebration.wav'); // Add your celebration sound
+        celebrationAudio.play().catch(error => {
+            console.log('Celebration audio playback failed:', error);
+        });
+        
+        // Auto-hide after 3 seconds
+        setTimeout(() => {
+            closeCongratulations();
+        }, 3000);
+    }
+    
+    function closeCongratulations() {
+        const modal = document.getElementById('congratsModal');
+        modal.style.display = 'none';
+        document.body.classList.remove('modal-open');
+    }
+        function showCorrectAnswer() {
+            const choiceA = document.getElementById('choiceA');
+            const choiceB = document.getElementById('choiceB');
+            const correctIndex = window.currentQuizCorrect;
+            
+            // Show correct answer when time runs out
+            if (correctIndex === 0) {
+                choiceA.classList.add('correct');
+                choiceB.classList.add('disabled');
+            } else {
+                choiceB.classList.add('correct');
+                choiceA.classList.add('disabled');
+            }
+            
+            // Auto close after 3 seconds
+            setTimeout(() => {
+                closeQuiz();
+            }, 3000);
+        }
+        
+        function closeQuiz() {
+            const quizModal = document.getElementById('quizModal');
+            const choiceA = document.getElementById('choiceA');
+            const choiceB = document.getElementById('choiceB');
+            
+            // Clear timer
+            if (quizTimer) {
+                clearInterval(quizTimer);
+                quizTimer = null;
+            }
+            
+            // Reset choices
+            choiceA.className = 'choice-button';
+            choiceB.className = 'choice-button';
+            
+            // Hide modal
+            quizModal.style.display = 'none';
+            document.body.classList.remove('modal-open');
+        }
+        
+        function showModal(letterPath,letterName, displayLetter) {
+            const modal = document.getElementById('letterModal');
+            const modalImage = document.getElementById('modalImage');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalContent = document.querySelector('.modal-content');
+            
+            // Hide the image
+            modalImage.style.display = 'none';
+            
+            // Create or update the large letter display
+            let letterDisplay = document.getElementById('modalLetter');
+            if (!letterDisplay) {
+                letterDisplay = document.createElement('div');
+                letterDisplay.id = 'modalLetter';
+                letterDisplay.style.cssText = `
+                    font-size: 5em;
+                    font-weight: bold;
+                    color: #116011;
+                    margin: 20px 50px;
+                    font-family: 'CS Avva Shenouda', 'ABRAAM', serif;
+                    text-shadow: 
+                        2px 2px 0px #0d4a0d,
+                        4px 4px 0px #0d4a0d,
+                        6px 6px 0px #0d4a0d,
+                        8px 8px 0px #0d4a0d,
+                        10px 10px 20px rgba(0,0,0,0.4);
+                    transform: perspective(800px) rotateX(20deg);
+                    transition: transform 0.3s ease;
+                `;
+                modalContent.insertBefore(letterDisplay, modalImage);
+            }
+            
+            // Use the displayLetter parameter or extract from clicked element
+            if (displayLetter) {
+                letterDisplay.textContent = displayLetter;
+            } else {
+                // Fallback: try to get from the clicked element
+                const clickedElement = event.target;
+                letterDisplay.textContent = clickedElement.textContent;
+            }
+            
+            // Set the title
+            modalTitle.textContent = letterName;
+            
+            // Show the modal
+            modal.style.display = 'block';
+            document.body.classList.add('modal-open');
+        }
+        
+        function closeModal() {
+            const modal = document.getElementById('letterModal');
+            modal.style.display = 'none';
+            document.body.classList.remove('modal-open');
+            
+            // Stop any currently playing audio
+            if (currentAudio) {
+                currentAudio.pause();
+                currentAudio.currentTime = 0;
+                currentAudio = null;
+            }
+        }
+        
+        // Close modal when clicking outside the content
+        window.onclick = function(event) {
+            const modal = document.getElementById('letterModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+        
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
+</head>
+<body style="background-image: url('images/liturgic-red-velvet-golden-christian-600nw-2029635419.webp'); 
+              background-size: cover; 
+              background-position: center; 
+              background-attachment: fixed;
+              background-repeat: no-repeat;">
+    <!-- Main content wrapper for blur effect -->
+    <div class="main-content">
+        <table>
+            <head>
+                <h1 style="text-align: center; margin-top: 30px;color: #e17713; font-size: 2.5em; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">
+                    Coptic Alphabet 😂😂❤ مارإفرام بيقولك : طالما وصلت لهنا يبقي انت اسطورة بقي 
+                </h1>
+            </head>
+            <tr>
+                <td><a href="#" onclick="showLetter('Dandia', 'ganga', null, 'G')" style="color:#2196F3;">G</a></td>
+                <td style=" background-color:rgb(106, 106, 196);"><a href="#" onclick="showLetter('Cima', 'shima', null, 'S')" style="color:#2196f3;">S</a></td>
+                <td><a href="#" onclick="showLetter('Ti', 'Ti', null, '5')" style="color:rgba(165, 42, 42, 0.482);">5</a></td>
+                <td style="background-color:rgb(106, 106, 196); cursor: pointer;" onclick="showCongratulations()">
+                    <a href="#" style="color:brown; font-family: Arial, Helvetica, sans-serif;">S.E.F</a>
+                </td>
+                <td style="background-color:white; cursor: pointer; border: 0;" onclick="window.location.href='final.html'">
+                    <img src="images/jesus-resurrected.webp" style="width: 100%; height: 100%; object-fit:cover; border: 0;" alt="">
+                </td>
+            </tr>
+            <tr>
+                <td style=" background-color:rgb(177, 149, 203);"><a href="#" onclick="showLetter('Hori', 'Hori', null, 'H')" style="color:#2196F3;">H</a></td>
+                <td><a href="#" onclick="showLetter('Qai', 'Qai', null, 'Q')" style="color:#2196F3;">Q</a></td>
+                <td style=" background-color:rgb(106, 106, 196);"><a href="#" onclick="showLetter('Fai', 'Fai', null, '4')" style="color:yellow;">4</a></td>
+                <td><a href="#" onclick="showLetter('Sai', 'Sai', null, '2')" style="color:rgb(255, 128, 0);">2</a></td>
+                <td style=" background-color:rgb(177, 149, 203);"><a href="#" onclick="showLetter('wo', 'wo', null, 'W')" style="color:rgb(255, 128, 0);">W</a></td>
+            </tr>
+            <tr>
+                <td><a href="#" onclick="showLetter('Tau', 'Tav', null, 'T')" style="color:#2196F3;">T</a></td>
+                <td style=" background-color:rgb(177, 149, 203);"><a href="#" onclick="showLetter('He', 'He', null, 'V')" style="color:#2196F3;">V</a></td>
+                <td><a href="#" onclick="showLetter('Phi', 'Phi', null, 'F')" style="color:rgba(165, 42, 42, 0.482);">F</a></td>
+                <td style=" background-color:rgb(106, 106, 196);"><a href="#" onclick="showLetter('Khi', 'Khi', null, 'X')" style="color:rgb(255, 128, 0);">X</a></td>
+                <td><a href="#" onclick="showLetter('Pxi', 'Pxi', null, 'Y')" style="color:rgb(255, 128, 0);">Y</a></td>
+            </tr>
+            <tr>
+                <td style=" background-color:rgb(106, 106, 196);"><a href="#" onclick="showLetter('Semma', 'Semma', null, 'C')" style="color:yellow;">C</a></td>
+                <td><a href="#" onclick="showLetter('Ro', 'Ro', null, 'R')" style="color:rgba(165, 42, 42, 0.482);">R</a></td>
+                <td style=" background-color:rgb(177, 149, 203);"><a href="#" onclick="showLetter('Pi', 'Pi', null, 'P')" style="color:yellow;">P</a></td>
+                <td><a href="#" onclick="showLetter('O', 'O', null, 'O')" style="color:rgba(165, 42, 42, 0.482);">O</a></td>
+                <td style=" background-color:rgb(106, 106, 196);"><a href="#" onclick="showLetter('Kxi', 'Ki', null, '7')" style="color:yellow;">7</a></td>
+            </tr>
+            <tr>
+                <td><a href="#" onclick="showLetter('Iota', 'Iota', null, 'I')" style="color: green;">I</a></td>
+                <td style=" background-color:rgb(106, 106, 196);"><a href="#" onclick="showLetter('Kappa', 'Kappa', null, 'K')" style="color: green;">K</a></td>
+                <td><a href="#" onclick="showLetter('Laula', 'Laula', null, 'L')" style="color:rgba(165, 42, 42, 0.482);">L</a></td>
+                <td style=" background-color:rgb(177, 149, 203);"><a href="#" onclick="showLetter('Me', 'Me', null, 'M')" style="color:rgb(236, 110, 131);">M</a></td>
+                <td><a href="#" onclick="showLetter('Ne', 'Ni', null, 'N')" style="color:rgb(236, 110, 131);">N</a></td>
+            </tr>
+            <tr>
+                <td style=" background-color:rgb(177, 149, 203);"><a href="#" onclick="showLetter('Theta', 'Theta', null, 'Θ')" style="color: green;">Θ</a></td>
+                <td><a href="#" onclick="showLetter('Eta', 'Eta', null, 'Η')" style="color: green;">Η</a></td>
+                <td style=" background-color:rgb(106, 106, 196);"><a href="#" onclick="showLetter('Zeta', 'Zeta', null, 'Z')" style="color:yellow;">Z</a></td>
+                <td><a href="#" onclick="showLetter('Sou', 'Sou', null, '6')" style="color:rgb(236, 110, 131);">6</a></td>
+                <td style=" background-color:rgb(177, 149, 203);"><a href="#" onclick="showLetter('Ei','Ei', null, 'E')" style="color:rgb(236, 110, 131);">E</a></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td style=" background-color:rgb(177, 149, 203);"><a href="#" onclick="showLetter('Alpha', 'Alva', null, 'A')" style="color: green;">A</a></td>
+                <td><a href="#" onclick="showLetter('Beta', 'Beta', null, 'B')" style="color:rgba(165, 42, 42, 0.482);">B</a></td>
+                <td style=" background-color:rgb(106, 106, 196);"><a href="#" onclick="showLetter('Gamma', 'Gamma', null, 'J')" style="color:rgb(236, 110, 131);">J</a></td>
+                <td><a href="#" onclick="showLetter('Dalda', 'Delta', null, 'D')" style="color:rgb(236, 110, 131);">D</a></td>
+            </tr>
+        </table>
+    </div>
+    <!-- Modal for showing large letter image -->
+    <div id="letterModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()"> &times;</span>
+            <h2 id="modalTitle" class="modal-title">Letter</h2>
+            <img id="modalImage" class="modal-image" src="" alt="">
+        </div>
+    </div>
+    
+    <!-- Quiz Modal -->
+    <div id="quizModal" class="quiz-modal">
+        <div class="quiz-content">
+            <span class="quiz-close" onclick="closeQuiz()">&times;</span>
+            <div id="quizTimer" class="quiz-timer">الوقت المتبقي: 15 ثانية</div>
+            <div id="quizQuestion" class="quiz-question">
+                <div class="question-text">في كلمة <span class="coptic-word"> ϣⲁⲓ </span>[عيد] حرف<span class="coptic-letter">ⲁ</span>نطق الحرف  هيكون إيه؟</div>
+            </div>
+
+            <div class="quiz-choices">
+                <button id="choiceA" class="choice-button" onclick="selectChoice('A')">
+                    آا
+                </button>
+                <button id="choiceB" class="choice-button" onclick="selectChoice('B')">
+                    إي
+                </button>
+            </div>
+        </div>
+    </div>
+        <div id="congratsModal" class="congrats-modal">
+    <div class="congrats-content">
+        <div class="celebration-emojis">🎉🎊🎈</div>
+        <h2 class="congrats-title" style=" font-family: Arial, Helvetica, sans-serif;">CONGRATULATIONS!</h2>
+        <p class="congrats-message" style=" font-family: Arial, Helvetica, sans-serif;">Up to Next Level!</p>
+        <div class="celebration-emojis">✨🌟⭐</div>
+        </div>
+        </div>
+</body>
+</html>

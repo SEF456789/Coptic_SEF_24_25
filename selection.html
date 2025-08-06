@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coptic Learning - Selection</title>
+    <style>
+        @font-face {
+            font-family: 'CS Avva Shenouda';
+            src: url('Avva_Shenouda.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+        
+        @font-face {
+            font-family: 'ABRAAM';
+            src: url("ABRAAM_0.ttf") format("truetype");
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Top Images */
+        .top-images {
+            position: absolute;
+            top: 20px;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 50px;
+            z-index: 1;
+        }
+
+        .top-image {
+            width: 200px;
+            height: 300px;
+            border-radius: 15px;
+            /* box-shadow: 0 8px 25px rgba(0,0,0,0.3); */
+            object-fit: contain;
+            transition: transform 0.3s ease;
+        }
+
+        .top-image:hover {
+            transform: scale(1.05);
+        }
+
+        /* Main Content Container */
+        .main-content {
+            text-align: center;
+            z-index: 2;
+        }
+
+        /* Title */
+        .title {
+            font-size: 3em;
+            color: white;
+            margin-bottom: 50px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            font-weight: bold;
+        }
+
+        /* Button Container */
+        .button-container {
+            display: flex;
+            gap: 40px;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.5s ease;
+        }
+
+        /* Main Buttons */
+        .main-btn {
+            padding: 20px 40px;
+            font-size: 1.5em;
+            font-weight: bold;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            font-family: Arial, sans-serif;
+        }
+
+        .learning-btn {
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            color: white;
+        }
+
+        .challenging-btn {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a52);
+            color: white;
+        }
+
+        .main-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+        }
+
+        /* Level Buttons (Hidden initially) */
+        .level-buttons {
+            display: none;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .level-buttons.show {
+            display: flex;
+        }
+
+        .level-btn {
+            padding: 15px 35px;
+            font-size: 1.3em;
+            font-weight: bold;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            min-width: 200px;
+            font-family: Arial, sans-serif;
+        }
+
+        .level1-btn {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+        }
+
+        .level2-btn {
+            background: linear-gradient(135deg, #f39c12, #e67e22);
+            color: white;
+        }
+
+        .level3-btn {
+            background: linear-gradient(135deg, #9b59b6, #8e44ad);
+            color: white;
+        }
+
+        .level-btn:hover {
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+        }
+
+        .back-btn {
+            margin-top: 20px;
+            padding: 10px 25px;
+            font-size: 1em;
+            background: linear-gradient(135deg, #95a5a6, #7f8c8d);
+            color: white;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family:  Arial, sans-serif;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-2px);
+            background: linear-gradient(135deg, #7f8c8d, #95a5a6);
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-out {
+            animation: fadeOut 0.3s ease forwards;
+        }
+
+        @keyframes fadeOut {
+            from {
+                opacity: 1;
+                transform: scale(1);
+            }
+            to {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .top-images {
+                padding: 0 20px;
+            }
+            
+            .top-image {
+                width: 150px;
+                height: 100px;
+            }
+            
+            .title {
+                font-size: 2em;
+                margin-bottom: 30px;
+            }
+            
+            .button-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .main-btn {
+                padding: 15px 30px;
+                font-size: 1.2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Images -->
+    <div class="top-images">
+        <img src="images/www-St-Takla-org--Saint-Aphram-the-Syrian-02.jpg" alt="Left Image" class="top-image">
+        <img src="images/488015260_966443308978528_4714984278116110905_n.jpg" alt="Right Image" style="width: 600px; height: 300px; object-fit:fill;" class="top-image">
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <h1 class="title" style="font-family: 'CS Avva Shenouda';">Gempen4ini qen pekovgai</h1>
+        <h2 class="title">"أفتقدنا بخلاصك"</h2>
+        <!-- Main Buttons Container -->
+        <div id="mainButtons" class="button-container">
+            <a href="Home.html" class="main-btn learning-btn">
+                📖 Learning
+            </a>
+            <button class="main-btn challenging-btn" onclick="showChallenges()">
+                🏆 Challenging
+            </button>
+        </div>
+
+        <!-- Level Buttons Container (Hidden initially) -->
+        <div id="levelButtons" class="level-buttons">
+            <a href="Q_Lv_1.html" class="level-btn level1-btn">
+                🥉 Level 1
+            </a>
+            <a href="Q_Lv_2.html" class="level-btn level2-btn">
+                🥈 Level 2
+            </a>
+            <a href="Q_Lv_3.html" class="level-btn level3-btn">
+                🥇 Level 3
+            </a>
+            <button class="back-btn" onclick="showMainButtons()">
+                ← Back to Main Menu
+            </button>
+        </div>
+    </div>
+
+    <script>
+        function showChallenges() {
+            const mainButtons = document.getElementById('mainButtons');
+            const levelButtons = document.getElementById('levelButtons');
+            
+            // Add fade out animation to main buttons
+            mainButtons.classList.add('fade-out');
+            
+            // After animation completes, hide main buttons and show level buttons
+            setTimeout(() => {
+                mainButtons.style.display = 'none';
+                levelButtons.classList.add('show');
+            }, 300);
+        }
+
+        function showMainButtons() {
+            const mainButtons = document.getElementById('mainButtons');
+            const levelButtons = document.getElementById('levelButtons');
+            
+            // Hide level buttons
+            levelButtons.classList.remove('show');
+            
+            // Show main buttons after a short delay
+            setTimeout(() => {
+                mainButtons.style.display = 'flex';
+                mainButtons.classList.remove('fade-out');
+            }, 300);
+        }
+
+        // Add some interactive background effects
+        document.addEventListener('mousemove', function(e) {
+            const cursor = document.createElement('div');
+            cursor.style.cssText = `
+                position: fixed;
+                width: 20px;
+                height: 20px;
+                background: rgba(255, 255, 255, 0.1);
+                border-radius: 50%;
+                pointer-events: none;
+                left: ${e.clientX - 10}px;
+                top: ${e.clientY - 10}px;
+                animation: sparkle 0.5s ease-out forwards;
+                z-index: 0;
+            `;
+            
+            document.body.appendChild(cursor);
+            
+            setTimeout(() => {
+                cursor.remove();
+            }, 500);
+        });
+
+        // Add sparkle animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes sparkle {
+                0% {
+                    transform: scale(0);
+                    opacity: 1;
+                }
+                100% {
+                    transform: scale(1);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
