@@ -344,6 +344,136 @@
         .quiz-close:hover {
             color: #333;
         }
+        
+        /* Mobile Responsive Styles */
+        @media (max-width: 768px) {
+            body {
+                padding: 5px;
+            }
+            
+            h1 {
+                font-size: 1.8em !important;
+                margin-top: 10px !important;
+                padding: 0 10px;
+                line-height: 1.3;
+            }
+            
+            table {
+                width: 100%;
+                margin: 10px auto;
+                border: 6px solid black;
+                transform: scale(0.9);
+            }
+            
+            td {
+                width: 70px;
+                height: 70px;
+                padding: 0;
+                font-size: 1.2em;
+            }
+            
+            td a {
+                font-size: 0.9em;
+            }
+            
+            .quiz-modal .modal-content {
+                width: 95%;
+                max-width: 400px;
+                padding: 15px;
+                margin: 0 auto;
+            }
+            
+            .quiz-question {
+                font-size: 1.3em;
+                margin-bottom: 15px;
+            }
+            
+            .quiz-options {
+                gap: 10px;
+            }
+            
+            .quiz-option {
+                padding: 12px 20px;
+                font-size: 1.1em;
+                min-width: 120px;
+            }
+            
+            .quiz-timer {
+                font-size: 1.1em;
+                padding: 8px 15px;
+            }
+            
+            .quiz-score {
+                font-size: 1.1em;
+                padding: 8px 15px;
+            }
+            
+            .congrats-content {
+                width: 95%;
+                max-width: 350px;
+                padding: 25px;
+            }
+            
+            .congrats-title {
+                font-size: 2em;
+                margin-bottom: 15px;
+            }
+            
+            .congrats-message {
+                font-size: 1.2em;
+                margin-bottom: 15px;
+            }
+            
+            .celebration-emojis {
+                font-size: 2.5em;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.4em !important;
+                margin-top: 5px !important;
+            }
+            
+            table {
+                border: 4px solid black;
+                transform: scale(0.8);
+            }
+            
+            td {
+                width: 60px;
+                height: 60px;
+                font-size: 1em;
+            }
+            
+            td a {
+                font-size: 0.8em;
+            }
+            
+            .quiz-question {
+                font-size: 1.1em;
+                margin-bottom: 12px;
+            }
+            
+            .quiz-option {
+                padding: 10px 15px;
+                font-size: 1em;
+                min-width: 100px;
+            }
+            
+            .quiz-timer, .quiz-score {
+                font-size: 1em;
+                padding: 6px 12px;
+            }
+            
+            .congrats-title {
+                font-size: 1.8em;
+            }
+            
+            .congrats-message {
+                font-size: 1.1em;
+            }
+        }
     </style>
     <script>
         let currentAudio = null; // Track the currently playing audio
