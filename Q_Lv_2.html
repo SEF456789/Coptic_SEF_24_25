@@ -484,15 +484,15 @@
         const quizQuestions = {
             'Alpha': {
                 question: '..... هي أداة تعريف عامة لكلمة <span class="coptic-text">2ai </span>',
-                choices: ['P ', '5 '],
-                //( P - 5 )
-                correct: 1
+                choices: ['Pi ', 'Ni '],
+                //( Pi - Ni )
+                correct: 0
             },
             'Beta': {
                 question: '..... أدوات تعريف خاصة لكلمة <span class="coptic-text">N3b</span>',
-                choices: ['\'f \\ \'0 ', '\'t \\ \'p'],
+                choices: ['\'f - \'0 ', '\'t - \'p'],
                 //( \'f أو \'0 - \'t أو \'p )
-                correct: 1
+                correct: 0
             },
             'Gamma': {
                 question:'كلمة <span class="coptic-text">ajjeloc</span> اللي معناها ملائكة تاخد أداة تنكير .....',
@@ -518,7 +518,7 @@
                 choices: ['Han', ' 5'],
 //                 كلمة أيام تعني \' Nehoov ......
 // ( Han - 5 )
-                correct: 1
+                correct: 0
             },
             'Zeta': {
                 question: 'كلمة <span class="coptic-text">zema</span> ..... تعني التخمر',
@@ -526,14 +526,14 @@
                 //                 كلمة zema ..... تعني التخمر
                 // ( Ni - pi )
                 
-                correct: 0
+                correct: 1
             },
             'Eta': {
                 question: 'كلمة <span class="coptic-text">Egwrh</span> اللي معناها ليل تاخد أداة تنكير .....',
 //                 كلمة Egwrh اللي معناها ليل تاخد أداة تنكير .....
 // ( Ov - Han )
                 choices: ['Ov', 'Han'],
-                correct: 1
+                correct: 0
             },
             'Theta': {
                 question: 'كلمة القميص تعني',
@@ -547,28 +547,28 @@
 //                 كلمة ia ..... معناها وادي
 // ( Ov - Han )
 
-                correct: 1
+                correct: 0
             },
             'Kappa': {
-                question: 'كلمة <span class="coptic-text">5Keli</span> تعتبر كلمة ......',
+                question: 'كلمة <span class="coptic-text">5 Keli</span> تعتبر كلمة ......',
                 choices: ['مؤنث', 'مذكر'],
 //                 كلمة 5Keli تعتبر كلمة ......
 // ( مذكر - مؤنث )
                 correct: 0
             },
             'Laula': {
-                question: 'كلمة <span class="coptic-text">laoc</span> اللي معناها شعب تاخد أداة التعريف الخاصة ......',
+                question: 'كلمة <span class="coptic-text">laoc</span> اللي معناها الشعب تاخد أداة التعريف الخاصة ......',
                 choices: ['\'p', '\'f'],
 //                 كلمة laoc اللي معناها شعب تاخد أداة التعريف الخاصة ...... 
 // ( \' p - \' f )
 
-                correct: 0
+                correct: 1
             },
             'Me': {
-                question: 'كلمة <span class="coptic-text">\'Plaoc</span> تعني الشعب وهي كلمة',
-                choices: ['يونانية ', 'قبطية '],
-                //Ⲡ̀ⲗⲁⲟⲥ 
-                correct: 0
+                question: 'كلمة <span class="coptic-text">Cvmfwnia</span> تعني توافق تاخد اداة التعريف الخاصة',
+                choices: ['\'f ', '\'t'],
+                //-19Cvmfwnia ............ ضع أداة تعريف خاصة . ) 
+                correct: 1
             },
             'Ne': {
                 question: 'كلمة <span class="coptic-text">Nim</span> تعني',
@@ -576,92 +576,91 @@
                 correct: 1
             },
             'Kxi': {
-                question: ' اللوح الحجري يعني',
-                choices: ['5Pla7', 'NiPla7'],
-                //( Ϯⲡ̀ⲗⲁⲝ - Ⲛⲓⲡ̀ⲗⲁⲝ )
+                question: '<span class="coptic-text">pla7</span> ممكن يجي معاها ',
+                choices: ['\'t - \'p', '\'0 - \'f'],
+                //أستخدام أداة تعريف خاصة 
+                //
                 correct: 0
             },
             'O': {
-                question:'كلمة <span class="coptic-text">Cop</span> ..... معناها مرة',
-//                 كلمة Cop ..... معناها مرة
-// ( Han - ov )
+                question:'كلمة <span class="coptic-text">Twov</span> اللي معناها جبل تاخد اداة تنكير.',
+                //كلمة Twov تاخد اداة تنكير.
                 choices: ['Han ', 'ov '],
-                correct: 0
+                correct: 1
             },
             'Pi': {
                 question: 'تستخدم أداة التعريف العامة .... في كلمة <span class="coptic-text">pnevma</span> ',
 //                 تستخدم أداة التعريف العامة .... في كلمة pnevma 
 // ( Pi - \'t )
                 choices: ['Pi ', '\'t '],
-                correct: 1
+                correct: 0
             },
             'Ro': {
                 question:'كلمة <span class="coptic-text">Rompi</span> اللي معناها سنة تاخد أداة تنكير .....',
 //                 كلمة Rompi اللي معناها سنة تاخد أداة تنكير .....
 // ( Ov - Han )
 
-                choices: ['Ov', 'Han'],
+                choices: ['Ov', '5'],
                 //( Ⲡⲓⲡ̀ⲛⲉⲩⲙⲁ - Ⲡⲓⲥⲱⲧⲏⲣ )
                 correct: 0
             },
             'Semma': {
-                question: 'كلمة <span class="coptic-text">\'Cmov</span> تاخد أداة التعريف الخاصة ......',
+                question: 'كلمة <span class="coptic-text">\'Cmov</span> اللي معناها البركة تاخد أداة التعريف الخاصة ......',
                 choices: [' Nen ', '\'p'],
 //                 كلمة Cmov'\ تاخد أداة التعريف الخاصة ......
 // ( Nen - \'p )
-                correct: 0
+                correct: 1
             },
             'Tau': {
-                question: 'كلمة جبل تعني',
-                choices: ['Ovtwov', 'Nitwov'],
+                question: 'كلمة <span class="coptic-text">xrictoc</span> تاخد اداة تعريف',
+                choices: ['pi', '\'f'],
                 //( Ⲟⲩⲧⲱⲟⲩ - Ⲛⲓⲧⲱⲟⲩ )
                 correct: 0
             },
             'He': {
-                question:'ملك المجد تعني <span class="coptic-text">N\'5e 5hir3n3</span>',
-                //Ⲛ̀ⲧⲉ ϯϩⲓⲣⲏⲛⲏ
-                choices: ['\'Povro', 'Niovro'],
-                //( Ⲡ̀ⲟⲩⲣⲟ - Ⲛⲓⲟⲩⲣⲟ )
-                correct: 0
+                question: 'كلمة <span class="coptic-text">Cvmfwnia</span> تعني توافق تاخد اداة التعريف الخاصة',
+                choices: ['\'f ', '\'t'],
+                //-19Cvmfwnia ............ ضع أداة تعريف خاصة . ) 
+                correct: 1
             },
-            'Phi': {
-                question: ' والدة الإله تعني <span class="coptic-text">\'M\'fnov5</span>',
-                //ⲙ̀Ⲫ̀ⲛⲟⲩϯ
-                choices: ['\'0mav', 'Nimav'],
+            'Fai': {
+                question: ' .......... ضع أداة تعريف عامة <span class="coptic-text">A4</span>',
+                //-25 4A.......... ضع أداة تعريف عامة. )) % - 
+                choices: ['Ni', '5'],
                 //( Ⲑ̀ⲙⲁⲩ - Ⲛⲓⲙⲁⲩ )
                 correct: 1
             },
             'Khi': {
-                question: 'كلمة مصر تعني <span class="coptic-text">X3mi</span> وفيها نطق حرف الـ Ⲭ',
-                //Ⲭⲏⲙⲓ
-                choices: ['ش', 'ك'],
-                //( ك - ش )
-                correct: 1
+                question: '<span class="coptic-text">Xere</span>تاخد اداة تعريف عامة',
+                // ........... تاخد اداة تعريف عامة
+                choices: ['\'p', '5'],
+                //
+                correct: 0
             },
             'Pxi': {
-                question: 'كلمة المزمور تعني <span class="coptic-text">Pi\'yalmoc</span> وهي كلمة',
-                //Ⲡⲓⲯ̀ⲁⲗⲙⲟⲥ
-                choices: ['يونانية', 'قبطية'],
-                //( قبطية - يونانية )
+                question: 'ضع أداة تعريف خاصة لكلمة <span class="coptic-text">yalmoc</span>',
+                //............ ضع أداة تعريف خاصة
+                choices: ['\'p', '\'0'],
+                //( )
                 correct: 0
             },
             'Hori': {
-                question: 'كلمة ثعابين تعني',
-                choices: ['Piho4', 'hanho4'],
+                question: '<span class="coptic-text">ho4</span>تستخدام كلمة ثعابين أداة تنكير ',
+                choices: ['ov', 'Han'],
                 //( Ⲡⲓϩⲟϥ - Ϩⲁⲛϩⲟϥ )
                 correct: 1
             },
             'Sai': {
-                question: 'كلمة القطط تعني <span class="coptic-text">Ni2av</span> وفيها نطق حرف الـ <span class="coptic-text">v</span> هيبقى ......؟',
-                //Ⲛⲓϣⲁⲩ
-                choices: ['ف', 'ي'],
+                question: 'أختر أداة التعريف العامة المناسبة لكلمة <span class="coptic-text">2av</span> اللي معناها قطة',
+                //-26أختر أداة التعريف العامة المناسبة av (( @% - P) 
+                choices: ['\'p', '5'],
                 //
-                correct: 0
+                correct: 1
             },
-            'Fai': {
-                question: 'كلمة اللحم تعني',
-                choices: ['Pia4', 'Nia4'],
-                //( Ⲡⲓⲁϥ - Ⲛⲓⲁϥ )
+            'Phi': {
+                question: 'أستخدم اداة تنكير لكلمة <span class="coptic-text">fe</span> اللي معناها سماء',
+                choices: ['ov', 'Han'],
+                //-20Fc ............ أستخدم اداة تنكير. ) 
                 correct: 0
             },
             'Ti': {
@@ -684,17 +683,17 @@
                 correct: 0
             },
             'wo': {
-                question:'كلمة المجد تعني',
-                choices: ['\'Pwov', 'Ovwov'],
+                question:'ضع أداة تنكير مناسبة لكلمة <span class="coptic-text">Wov</span> اللي معناها مجد',
+                //4-27Wo......... ضع أداة تنكير مناسبة . ) 
+                choices: ['Han', 'Ov'],
                 //( Ⲡ̀ⲱⲟⲩ - Ⲟⲩⲱⲟⲩ )
-                correct: 0
+                correct: 1
             },
             'Qai':{
-                question: 'كلمة <span class="coptic-text">qi5</span> تعني إضمحل وهو فعل أصله',
-                //Ϧⲓϯ
-                choices: ['يوناني', 'قبطي'],
-                //( قبطي - يوناني )
-                correct: 1
+                question: '<span class="coptic-text">qi5</span>تستخدام أداة تعريف عامة',
+                //5-qi5.............. تستخدام أداة تعريف عامة.
+                choices: ['pi', '5'],
+                correct: 0
             }
         };
         
@@ -1071,7 +1070,7 @@
         <div class="celebration-emojis">✨🌟⭐</div>
         </div>
         </div>
-        <div class="coptic-letter">a/b/c/d/e/f/g/h/i/j/k/l/m/n/o/p/q/r/s/t/u/v/w/x/y/z/1/2/3/4/5/6/7/8/9/0/,/./''/"/:/>/?/;/|/]/[</div>
-        <div>a/b/c/d/e/f/g/h/i/j/k/l/m/n/o/p/q/r/s/t/u/v/w/x/y/z/1/2/3/4/5/6/7/8/9/0</div>
+        <!-- <div class="coptic-letter">a/b/c/d/e/f/g/h/i/j/k/l/m/n/o/p/q/r/s/t/u/v/w/x/y/z/1/2/3/4/5/6/7/8/9/0/,/./''/"/:/>/?/;/|/]/[</div>
+        <div>a/b/c/d/e/f/g/h/i/j/k/l/m/n/o/p/q/r/s/t/u/v/w/x/y/z/1/2/3/4/5/6/7/8/9/0</div> -->
 </body>
 </html>
